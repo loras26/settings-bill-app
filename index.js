@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
     res.render('index', {
-        settings: settingsBill.getSettings(),
+       /* settings: settingsBill.getSettings(),*/
         totals: settingsBill.totals()
     });
 })
