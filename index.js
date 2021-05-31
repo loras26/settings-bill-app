@@ -7,7 +7,7 @@ const app = express();
 const settingsBill = SettingsBill();
 
 
-app.engine('handlebars', exphbs({ partialsDir: "./views/partials",
+app.engine('handlebars', exphbs({ 
 viewPath: "./views",
 layoutsDir: "./views/layouts"}));
 app.set('view engine', 'handlebars');
