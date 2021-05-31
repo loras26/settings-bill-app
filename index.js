@@ -7,7 +7,9 @@ const app = express();
 const settingsBill = SettingsBill();
 
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.engine('handlebars', exphbs({ partialsDir: "./views/partials",
+viewPath: "./views",
+layoutsDir: "./views/layouts"}));
 app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 
@@ -19,7 +21,7 @@ app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
     res.render('index', {
-       /* settings: settingsBill.getSettings(),*/
+        settings: settingsBill.getSettings(),
         totals: settingsBill.totals()
     });
 })
