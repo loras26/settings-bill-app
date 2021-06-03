@@ -24,7 +24,7 @@ module.exports = function SettingsBill() {
             criticalLevel
         }
     }
-
+    //prevent any new inputs if 
     function recordAction(action) {
 
         let cost = 0;
