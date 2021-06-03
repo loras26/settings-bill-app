@@ -22,8 +22,12 @@ app.use(bodyParser.json());
 app.get('/', function (req, res) {
     res.render('index', {
         settings: settingsBill.getSettings(),
-        totals: settingsBill.totals()
+        totals: settingsBill.totals(),
+        style: settingsBill.levels()
+
+        
     });
+
 })
 
 app.post('/settings', function (req, res) {
@@ -60,6 +64,10 @@ app.get('/actions/:type', function (req, res) {
     res.render('actions', { actions: settingsBill.actionsFor(type) });
 
 });
+// app.get('/style', function(req, res){
+//     res.render('style', {style: settingsBill.status()})
+// });
+
 
 let PORT = process.env.PORT || 3009;
 

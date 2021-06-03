@@ -16,6 +16,7 @@ module.exports = function SettingsBill() {
 
     function getSettings
         () {
+
         return {
             smsCost,
             callCost,
@@ -27,13 +28,17 @@ module.exports = function SettingsBill() {
     function recordAction(action) {
 
         let cost = 0;
-        if (action === 'sms') {
-            cost = smsCost;
+        if(!hasReachedCriticalLevel()){
+            
+            if (action === 'sms') {
+                cost = smsCost;
+            }
+             if (action === 'call') {
+                cost = callCost;
+            }
+    
+            
         }
-        else if (action === 'call') {
-            cost = callCost;
-        }
-
         actionList.push({
             type: action,
             cost,
@@ -85,12 +90,15 @@ module.exports = function SettingsBill() {
     }
 
     function grandTotal() {
+
         return getTotal('sms') + getTotal('call');
+
     }
 
     function totals() {
         let smsTotal = getTotal('sms')
         let callTotal = getTotal('call')
+       
         return {
             smsTotal,
             callTotal,
@@ -110,6 +118,16 @@ module.exports = function SettingsBill() {
         const total = grandTotal();
         return total >= criticalLevel;
     }
+    function levels() {
+
+
+        if (grandTotal() >= warningLevel && grandTotal() < criticalLevel) {
+            return "warning"
+        }
+        if (grandTotal() >= criticalLevel) {
+            return "danger"
+        }
+    };
 
     return {
         setSettings,
@@ -119,6 +137,8 @@ module.exports = function SettingsBill() {
         actionsFor,
         totals,
         hasReachedWarningLevel,
-        hasReachedCriticalLevel
+        hasReachedCriticalLevel,
+        levels
+
     }
 }
