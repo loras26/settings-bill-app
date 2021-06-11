@@ -28,18 +28,18 @@ module.exports = function SettingsBill() {
     function recordAction(action) {
 
         let cost = 0;
-        if(!hasReachedCriticalLevel()){
-            
+        if (!hasReachedCriticalLevel()) {
+
             if (action === 'sms') {
                 cost = smsCost;
             }
-             if (action === 'call') {
+            if (action === 'call') {
                 cost = callCost;
             }
-    
-            
+
+
         }
-        if(cost>0){
+        if (cost > 0) {
             actionList.push({
                 type: action,
                 cost,
@@ -100,7 +100,7 @@ module.exports = function SettingsBill() {
     function totals() {
         let smsTotal = getTotal('sms')
         let callTotal = getTotal('call')
-       
+
         return {
             smsTotal,
             callTotal,
